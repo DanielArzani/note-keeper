@@ -1,7 +1,7 @@
 //* Imports
-const express = require('express');
 const apiRoutes = require('./routes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
+const express = require('express');
 
 
 //* Variables
@@ -16,7 +16,8 @@ app.use(express.urlencoded({extended: true}));
 // Parse incoming JSON data
 app.use(express.json());
 // Allows us to use non-specified static files
-app.use(express.static('public'));
+app.use(express.static('Develop/public'));
+
 app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 

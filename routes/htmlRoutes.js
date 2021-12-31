@@ -1,17 +1,22 @@
-const path = require('path');
 const router = require('express').Router();
+const path = require('path');
+const apiRoute = require('./apiRoutes');
 
-//& GET notes route
-app.get('/notes', function(req,res){
-    res.sendFile(path.join(__dirname, './Develop/public/notes.html'));
-});
+
 
 //& GET home route
-app.get('/', function(req,res){
-    res.sendFile(path.join(__dirname, './Develop/public/index.html'));
+router.get('/', function(req,res){
+    res.sendFile(path.join(__dirname, '../Develop/public/index.html'));
+});
+
+//& GET notes route
+router.get('/notes', function(req,res){
+    res.sendFile(path.join(__dirname, '../Develop/public/notes.html'));
 });
 
 //& GET wildcard route
-app.get('*', function(req,res){
-    res.sendFile(path.join(__dirname, './Develop/public/index.html'));
+router.get('*', function(req,res){
+    res.sendFile(path.join(__dirname, '../Develop/public/index.html'));
 });
+
+module.exports = router;
