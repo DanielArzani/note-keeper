@@ -1,7 +1,7 @@
 //* Imports
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
 
 
 //* Variables
@@ -17,24 +17,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 // Allows us to use non-specified static files
 app.use(express.static('public'));
-
-
-//* Routes
-
-//& GET home route
-app.get('/', function(req,res){
-    res.sendFile(path.join(__dirname, './Develop/public/index.html'));
-});
-
-//& GET notes route
-app.get('/notes', function(req,res){
-    res.sendFile(path.join(__dirname, './Develop/public/notes.html'));
-});
-
-//& GET wildcard route
-app.get('*', function(req,res){
-    res.sendFile(path.join(__dirname, './Develop/public/index.html'));
-});
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 
 //* Tell server to listen for requests
