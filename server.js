@@ -1,28 +1,19 @@
-//* Imports
-const apiRoutes = require('./routes/apiRoutes');
-const htmlRoutes = require('./routes/htmlRoutes');
-const express = require('express');
+// Imports
+const express = require("express");
+const htmlRouter = require("./routes/htmlRoutes");
+const apiRouter = require("./routes/apiRoutes");
 
-
-//* Variables
-// Instantiate the server
+// Instantiate app variable
 const app = express();
-// Assign PORT number
-const PORT = process.env.PORT || 3000;
 
-//* Express Methods
-// Parse incoming string or array data
-app.use(express.urlencoded({extended: true}));
-// Parse incoming JSON data
+// Middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Allows us to use non-specified static files
-app.use(express.static('Develop/public'));
+// Change this using path.join()
+app.use(express.static(__dirname + "/Develop/public"));
 
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
+app.use("/api/notes", apiRouter);
+app.use("/", htmlRouter);
 
-
-//* Tell server to listen for requests
-app.listen(PORT, function(){
-    console.log("Server is on port 3000");
-});
+// Listen for server
+app.listen(3000, console.log("Server is running"));

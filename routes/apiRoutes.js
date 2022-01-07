@@ -1,39 +1,14 @@
-//* Imports
-const router = require('express').Router();
-const htmlRoute = require('./htmlRoutes');
-const fs = require('fs');
-const path = require('path');
-const notes = require('../Develop/db/db.json');
+const express = require("express");
+const router = express.Router();
+const apiController = require("../controllers/apiControllers");
 
-let currentID = notes.length;
+// Get All Notes and Create New Note
+router.route("/").get(apiController.getAllNotes).post(apiController.createNote);
 
-//* Functions
-function rewriteNotes(){
-    fs.writeFile(path.join(__dirname, "../Develop/db/db.json"), JSON.stringify(notes), (err)=>{
-        if (err) throw err;
-    }),{ recursive: true }
-}
-
-
-//& GET request
-router.get('/notes', function(req,res){
-    return res.json(notes);
-    
-});
-
-//& POST request
-router.post('/notes', function(req,res){
-    const newNote = req.body;
-    newNote["id"] = currentID +1;
-    currentID++;
-
-    console.log(newNote);
-
-    notes.push(newNote);
-    rewriteNotes();
-
-    return res.status(200).end();
-});
-
+// Get Single Note and Delete Single Note
+router
+  .route("/:id")
+  .get(apiController.getNote)
+  .delete(apiController.deleteNote);
 
 module.exports = router;

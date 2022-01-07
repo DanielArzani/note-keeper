@@ -1,22 +1,23 @@
 {
-  "name": "note-keeper",
+  "name": "miniature-eureka",
   "version": "1.0.0",
-  "description": "An app for taking notes",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DanielArzani/note-keeper.git"
+    "url": "git+https://github.com/coding-boot-camp/miniature-eureka.git"
   },
-  "author": "Daniel Arzanipour",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DanielArzani/note-keeper/issues"
+    "url": "https://github.com/coding-boot-camp/miniature-eureka/issues"
   },
-  "homepage": "https://github.com/DanielArzani/note-keeper#readme",
+  "homepage": "https://github.com/coding-boot-camp/miniature-eureka#readme",
   "dependencies": {
     "express": "^4.17.2"
   }

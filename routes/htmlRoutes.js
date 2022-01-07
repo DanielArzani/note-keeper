@@ -1,22 +1,14 @@
-const router = require('express').Router();
-const path = require('path');
-const apiRoute = require('./apiRoutes');
+const express = require("express");
+const router = express.Router();
+const htmlController = require("../controllers/htmlControllers");
 
+// Home Page Route
+router.get("/", htmlController.getHomePage);
 
+// Notes Page Route
+router.get("/notes", htmlController.getNotesPage);
 
-//& GET home route
-router.get('/', function(req,res){
-    res.sendFile(path.join(__dirname, '../Develop/public/index.html'));
-});
-
-//& GET notes route
-router.get('/notes', function(req,res){
-    res.sendFile(path.join(__dirname, '../Develop/public/notes.html'));
-});
-
-//& GET wildcard route
-router.get('*', function(req,res){
-    res.sendFile(path.join(__dirname, '../Develop/public/index.html'));
-});
+// For all invalid routes, send back to home route
+router.get("*", htmlController.invalidRoutes);
 
 module.exports = router;
